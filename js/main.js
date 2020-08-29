@@ -1,7 +1,44 @@
 var auth=firebase.auth();
 var firestore=firebase.firestore();
 var signinForm=document.querySelector(".signinForm");
-var signupForm=document.querySelector(".signupForm")
+var signupForm=document.querySelector(".signupForm");
+var googleBtn=document.querySelector(".googleBtn");
+var googleSignin = async()=>{
+    try {
+        var googleProvider = new firebase.auth.GoogleAuthProvider();
+        var {additionalUserInfo:{isNewUser},user:{uid,displayName,email}}=await firebase.auth().signInWithPopup(googleProvider);
+         
+        //if new user then store info in firestore
+        if(isNewUser)
+        {
+            //store info in firestore
+
+            var userInfo={
+                fullName:displayName,
+                email,
+                createdAt:new Date(),
+            }
+            await firestore.collection("users").doc(uid).set(userInfo);
+            console.log("done");
+            //redirect to dashboard
+            //dashboard.html#{uid}
+            location.assign(`./dashboard.html#${uid}`)
+    
+        }
+        else
+        {
+            
+            console.log("welcome");
+            //redirect to dashboard
+           //dashboard.html#{uid}
+           location.assign(`./dashboard.html#${uid}`)
+        }
+
+    } catch (error) {
+        console.log(error.messsage);
+    }
+}
+googleBtn.addEventListener("click",googleSignin);
 
 var signinFormSubmission=async (e) => {
     e.preventDefault();
@@ -15,6 +52,8 @@ var signinFormSubmission=async (e) => {
         var userInfo=await firestore.collection("users").doc(uid).get();
         console.log(userInfo.data());
         //redirect to dashboard
+        //dashboard.html#{uid}
+        location.assign(`./dashboard.html#${uid}`)
     } catch (error) {
         console.log(error.messsage);
         
@@ -39,7 +78,9 @@ var signupFormSubmission=async (e)=>{
           }
           await firestore.collection("users").doc(uid).set(userInfo);
           console.log("done");
-          //redirect to dashboard
+        //redirect to dashboard
+        //dashboard.html#{uid}
+        location.assign(`./dashboard.html#${uid}`)
         }
     } catch (error) {
         console.log(error);
