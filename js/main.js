@@ -3,6 +3,8 @@ var firestore=firebase.firestore();
 var signinForm=document.querySelector(".signinForm");
 var signupForm=document.querySelector(".signupForm");
 var googleBtn=document.querySelector(".googleBtn");
+
+//google sign up
 var googleSignin = async()=>{
     try {
         var googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -38,7 +40,10 @@ var googleSignin = async()=>{
         console.log(error.messsage);
     }
 }
-googleBtn.addEventListener("click",googleSignin);
+
+
+
+//Sign in with email and password
 
 var signinFormSubmission=async (e) => {
     e.preventDefault();
@@ -60,6 +65,7 @@ var signinFormSubmission=async (e) => {
     }
 
 }
+//Sign up with email and password
 var signupFormSubmission=async (e)=>{
     e.preventDefault();
     try {
@@ -89,8 +95,7 @@ var signupFormSubmission=async (e)=>{
 }
 signinForm.addEventListener("submit",(e)=>signinFormSubmission(e));
 signupForm.addEventListener("submit",(e)=>signupFormSubmission(e));
-
-
+googleBtn.addEventListener("click",googleSignin);
 
 
 

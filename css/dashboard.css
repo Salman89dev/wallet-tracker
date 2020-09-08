@@ -1,0 +1,40 @@
+*{
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+.flex
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container
+{
+    display: grid;
+    grid-template-rows: 10vh 15vh minmax(75vh,min-content);
+}
+.transcationFormArea{
+    background: aqua;
+}
+.navbar{
+    background: bisque;
+    display: grid;
+    grid-template-columns: min-content 1fr max-content;
+}
+.tanscationList{
+
+    background: burlywood;
+}
+.logo ,.name h3{
+    padding: 0px 30px;
+}
+.transcationListItem
+{
+    display: grid;
+
+    grid-template-columns: min-content 1fr min-content max-content;
+}
+.listItem{
+    padding: 20px;
+}
