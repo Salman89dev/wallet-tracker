@@ -33,7 +33,8 @@
 {
     display: grid;
 
-    grid-template-columns: min-content 1fr min-content max-content;
+    grid-template-columns: min-content 1fr min-content max-content min-content;
+    text-align: center;
 }
 .listItem{
     padding: 20px;

@@ -52,7 +52,7 @@ var signinFormSubmission=async (e) => {
         var signinPassword=document.querySelector(".signinPassword").value;
         //login 
         var {user:{uid}}=await auth.signInWithEmailAndPassword(signinEmail,signinPassword)
-        //fatech data from firestore
+        //fatch data from firestore
 
         var userInfo=await firestore.collection("users").doc(uid).get();
         console.log(userInfo.data());
@@ -110,6 +110,7 @@ googleBtn.addEventListener("click",googleSignin);
 //     name:'salu',
 //     age:23,
 //     subject:{
+
 //         major:"english",
 //         minor:"maths",
 //     }

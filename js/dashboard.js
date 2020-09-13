@@ -1,4 +1,4 @@
- var auth=firebase.auth();
+var auth=firebase.auth();
 var firestore=firebase.firestore();
 var nameDiv=document.querySelector(".name h3");
 var signOutBtn=document.querySelector(".signOutBtn");
@@ -15,6 +15,7 @@ var tanscationList=document.querySelector(".tanscationList");
 var uid=null;
 
 var renderTranscations=(transcationArr)=>{
+    tanscationList.innerHTML=""
     transcationArr.forEach(({title,cost,transcationAt},index)=>{
         tanscationList.insertAdjacentHTML('beforeend',`
         <div class="transcationListItem">
@@ -26,8 +27,12 @@ var renderTranscations=(transcationArr)=>{
             <h3>${cost}</h3>
         </div>
         <div class="renderAt listItem">
-            <h3>${transcationAt}</h3>
+            <h3>${transcationAt.toDate().toISOString().split("T")[0]}</h3>
         </div>
+
+        <div class="renderAt listItem">
+        <a href="./transcation.html#${uid}"><button type="button">view</button></a>
+    </div>
     </div>`)
     })
 }
@@ -51,12 +56,26 @@ var transcationFormSubmission=async (e)=>{
                 transcationBy:uid
             }
             await firestore.collection("transcation").add(transcationObj);
+            // render fresh transcation
+            var transcatons=await fatchTranscation(uid)
+            // transcation render process
+            // console.log(transcatons)
+             renderTranscations(transcatons)
             console.log("done");
         }
         
     } catch (error) {
         console.log(error.message);
     }
+}
+
+var fatchTranscation=async (uid)=>{
+    var transcations=[];
+    var query=await firestore.collection("transcation").where("transcationBy","==",uid).orderBy("transcationAt","desc").get();
+    query.forEach((doc)=>{
+        transcations.push({...doc.data(), transcationId: doc.id})
+    })
+    return transcations;
 }
 
 // UserSignOut
@@ -92,21 +111,12 @@ auth.onAuthStateChanged(async(user)=>{
 
         // setting user info
         nameDiv.textContent=userInfo.fullName;
-        var transArr=[{
-            title:"xyz",
-            cost:"200",
-            transcationAt:"2020-2-5",
-            transcationType:"expense",
-        },
-        {
-            title:"abc",
-            cost:"230",
-            transcationAt:"3020-5-5",
-            transcationType:"income",
-        },
-        
-    ]
-      renderTranscations(transArr)
+        // render transcation
+        // fatch user transcation
+        var transcatons=await fatchTranscation(uid)
+        // transcation render process
+        // console.log(transcatons)
+         renderTranscations(transcatons)
     }
     else{
         location.assign('./index.html')
