@@ -16,7 +16,8 @@ var uid=null;
 
 var renderTranscations=(transcationArr)=>{
     tanscationList.innerHTML=""
-    transcationArr.forEach(({title,cost,transcationAt},index)=>{
+    transcationArr.forEach((transcation,index)=>{
+        var {title,cost,transcationAt,transcationId}=transcation;
         tanscationList.insertAdjacentHTML('beforeend',`
         <div class="transcationListItem">
         <div class="index listItem"><h3>${++index}</h3></div>
@@ -30,8 +31,8 @@ var renderTranscations=(transcationArr)=>{
             <h3>${transcationAt.toDate().toISOString().split("T")[0]}</h3>
         </div>
 
-        <div class="renderAt listItem">
-        <a href="./transcation.html#${uid}"><button type="button">view</button></a>
+        <div class=" renderAt listItem">
+        <a href="./transcation.html#${transcationId}"><button type="button">view</button></a>
     </div>
     </div>`)
     })
@@ -113,10 +114,10 @@ auth.onAuthStateChanged(async(user)=>{
         nameDiv.textContent=userInfo.fullName;
         // render transcation
         // fatch user transcation
-        var transcatons=await fatchTranscation(uid)
+        var transcations=await fatchTranscation(uid)
         // transcation render process
-        // console.log(transcatons)
-         renderTranscations(transcatons)
+        // console.log(transcations)
+         renderTranscations(transcations)
     }
     else{
         location.assign('./index.html')
