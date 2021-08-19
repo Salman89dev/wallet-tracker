@@ -8,7 +8,47 @@
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-    <h1>Wallet Trackerss</h1>
+
+    <div class="container">
+        
+        <div class="signUpFormArea flex">
+            <form action="" class="signUpForm">
+                <input type="text" placeholder="Full Name " class="fullNameSignUp">
+                <input type="text" placeholder="Email" class="emailSignUp">
+                <input type="text" placeholder="Password" class="passwordSignUp">
+                <button type="submit">submit</button>
+            </form>
+        </div>
+
+        <div class="signInFormArea flex">
+            <form action="" class="signInForm">
+                <input type="text" placeholder="Email" class="emailSignIn">
+                <input type="text" placeholder="Password" class="passwordSignIn">
+                <button type="submit">submit</button>
+            </form>
+        </div>
+    </div>
+
+
+
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+
+        <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCFx-B10FURuPmDRuzzAi5Iz1wkw0WgN70",
+            authDomain: "wallet-tracker-47db5.firebaseapp.com",
+            projectId: "wallet-tracker-47db5",
+            storageBucket: "wallet-tracker-47db5.appspot.com",
+            messagingSenderId: "241754629067",
+            appId: "1:241754629067:web:2e809adbe445abcd8ecc4e"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        </script>
     <script src="./js/main.js"></script>
 </body>
 </html>
