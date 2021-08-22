@@ -5,8 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
 </head>
 <body>
-    <h1>Dashboard</h1>
+
+    <div class="container">
+        <div class="navbar flex">
+            <div class="logo">
+                <h2>Logo</h2>
+            </div>
+            <div class="amount">
+                <h1>$40</h1>
+            </div>
+            <div class="nameDiv">
+                <h4>name</h4>
+            </div>
+        </div>
+        <div class="transactionForm flex">
+            transaction Form
+        </div>
+        <div class="transactionList flex">
+            transaction List
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyCFx-B10FURuPmDRuzzAi5Iz1wkw0WgN70",
+        authDomain: "wallet-tracker-47db5.firebaseapp.com",
+        projectId: "wallet-tracker-47db5",
+        storageBucket: "wallet-tracker-47db5.appspot.com",
+        messagingSenderId: "241754629067",
+        appId: "1:241754629067:web:2e809adbe445abcd8ecc4e"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./js/dashboard.js"></script>
 </body>
 </html>

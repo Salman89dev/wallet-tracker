@@ -1,0 +1,30 @@
+*{
+    margin: 0 ;
+    padding: 0;
+}
+.flex
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.navbar
+{
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.container
+{
+    display: grid;
+    grid-template-rows: 10vh 10vh minmax(80vh,min-content);
+}
+.navbar
+{
+    background-color: aliceblue;
+}
+.transactionForm {
+    background: cyan;
+}
+.transactionList{
+    background: cadetblue;
+}
